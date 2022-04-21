@@ -1,0 +1,14 @@
+<h1>Add fund to database</h1>
+            <form action="addrecord/" method="post">
+                {% csrf_token %}
+                Name of fund:<br>
+                <input name="nameFund">
+                <br><br>
+                Number of holdings:<br>
+                <input name="numHoldings">
+                <br><br>
+                Instution held at:<br>
+                <input name="institution">
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
