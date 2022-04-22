@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     
@@ -13,13 +13,13 @@
  
 <body>
      
-    <!-- Header Section -->
+
     <header>
         <div class="head1">Home Finance</div>
         <div class="head2"></div>
     </header>
      
-    <!-- Menu Navigation Bar -->
+
     <div class="menu">
         <a href='add/'>Add portfolio entry</a>
         <a href="#news"></a>
@@ -29,7 +29,7 @@
         </div>
     </div>
      
-    <!-- Body section -->
+
     <div class = "body_sec">
         <section id="Content">
 
@@ -62,8 +62,60 @@
         </section>
     </div>
      
-    <!-- Footer Section -->
+
     <footer></footer>
 </body>
 </html>  
+ -->
 
+ <!DOCTYPE html>
+ <html>
+ <head>
+    {% load humanize %}
+    {% load static %}
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <style>
+     .parallax{
+         background-image: url("{% static 'media/IMG_2317.JPG' %}");
+        }
+    
+ </style>
+ </head>
+ <body>
+<div class="topnav">
+    <a class="active" href="index/">Home</a>
+    <a href='add/'>Add portfolio entry</a>
+</div> 
+ 
+ <div class="parallax"></div>
+ 
+ <div style="height:1000px;background-color:rgb(255, 255, 255);color: #777;text-align: center; font-size:15px">
+ <!-- Scroll Up and Down this page to see the parallax scrolling effect.
+ This div is just here to enable scrolling.
+ Tip: Try to remove the background-attachment property to remove the scrolling effect. -->
+ <br><br><h2>PORTFOLIO</h2><br>
+ <table class="center">
+    <tr>
+        <th>Fund Name</th>
+        <th>Current Price</th>
+    </tr>
+    {% for i in holdings.funds %}
+    <tr>
+     
+        <td>{{ i.fundName }} </td>
+        <td>${{ i.value|floatformat:"0" }}</td>
+        
+    </tr>
+    {% endfor %}
+    <tr>
+        <td><b>Total</b></td>
+        <td><b>${{ totalValue|floatformat:"0" }}</b></td>
+    </tr> 
+
+</div>
+ 
+ </body>
+ </html>

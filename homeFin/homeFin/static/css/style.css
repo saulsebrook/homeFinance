@@ -8,10 +8,13 @@
     margin-left:10px;
     margin-bottom:15px;
 }
-body {
+body, p {
     margin: 0 auto;
     background-position:center;
     background-size: contain;
+    color: #777;
+    font-family: 'Lato';
+    font-size: 15px;
 }
 .menu {  
     position: sticky;
@@ -22,13 +25,30 @@ body {
     margin: 0 auto;
     overflow: hidden;
 }
-.menu a {
+.menu{
     float: left;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 20px;
+}
+.topnav{
+    background-color: white;
+    overflow: hidden;
+}
+.topnav a {
+    float: left;
+    color:#777;
+    text-align: center;
+    padding: 18px 20px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover{
+    background-color: #777;
+    color: white;
+
 }
 .menu-log {
     right: auto;
@@ -44,10 +64,31 @@ border-bottom:1px solid black;
 text-align: left;
 padding: 8px;
 }
+
+h3, h2{
+    font-weight: 400;
+}
 .center{
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
     padding-top: 300px;
+    font-family: Georgia, serif;
 }
+
+.parallax {
+    /* The image used */
+
+    opacity: 0.75;
+    text-align: center;
+  
+    /* Set a specific height */
+    min-height: 800px; 
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
