@@ -109,6 +109,7 @@ def index(request):
                     {'fundName': HbarAmt.nameFund, "value": HbarValue},]
                 } 
     
+    
     #Dictionary of variables created to be passed to template
     context = {'holdings': holdings,
             'totalValue': totalValue,
