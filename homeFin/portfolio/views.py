@@ -105,7 +105,7 @@ def index(request):
                     {'fundName': EthAmt.nameFund, "value": EthValue},
                     {'fundName': BitAmt.nameFund, "value": BitValue},
                     {'fundName': AirAmt.nameFund, "value": AirValue},
-                    {'fundName': "Vanguard", "value": VanguardValue},
+                    {'fundName': VanguardAmt.institution, "value": VanguardValue},
                     {'fundName': HbarAmt.nameFund, "value": HbarValue},]
                 } 
     
