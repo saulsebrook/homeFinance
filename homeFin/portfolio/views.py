@@ -20,7 +20,7 @@ def index(request):
     response.raise_for_status()
     soup = bs4.BeautifulSoup(response.text, features="html.parser")
 
-
+    #Sites where data is scraped from
     eur_aud = 'https://www.x-rates.com/calculator/?from=EUR&to=AUD&amount=1'
     res1 = requests.get(eur_aud, headers = {'User-agent': 'your bot 0.1'})
     res1.raise_for_status()
@@ -64,20 +64,11 @@ def index(request):
     airbusPrice = soup.find('span', class_="price-section__current-value")
     airbusHoldings = float(airbusPrice.text)
     ethPrice = soup2.find('span', class_="currency-value__amount")
-    ethereumHolding = float(ethPrice.text.replace(',','').strip('$'))  * Etheriums
     bitcoinPrice = soup3.find('span', class_="currency-value__amount")
-    bitcoinHolding = float(bitcoinPrice.text.replace(',','').strip('$'))  * Bitcoins
     vdhgPrice = soup4.find('div', class_="YMlKec fxKbKc")
-    vdhgHolding = float(vdhgPrice.text.replace(',','').strip('$')) * 48
     vesgPrice = soup5.find('div', class_="YMlKec fxKbKc")
-    vesgHolding = float(vesgPrice.text.replace(',','').strip('$')) * 65
     vanguardPrice = soup6.find_all('span', class_="YMWpadright")
-    vanguardHolding = float(vanguardPrice[4].text.replace(',','').strip('$')) * 3212.25
     hbarPrice = soup7.find('div', class_="priceValue")
-    #hbarHolding = 21
-    hbarHolding = float(hbarPrice.text.replace(',','').strip('$')) * Hbar
-  
-    
 
     #Convert airbus euro stock price to AUD
     euro = soup1.find('span', class_ ='ccOutputRslt')
@@ -85,38 +76,49 @@ def index(request):
     rates = re.findall(r'\d+\.\d+', conversion)
     rate = rates[0]
     totalPrice = float(rate) * float(airbusHoldings)
-    airbusAUDTotal = float(totalPrice) * 34
-
-    #Calculate total investment value
-    totalHoldings = int(vesgHolding + vdhgHolding + ethereumHolding + bitcoinHolding + airbusAUDTotal + vanguardHolding + hbarHolding)
+    airbusAUDTotal = float(totalPrice)
     
-    holdings = {'funds':[{'fundName': 'VESG', "value": int(vesgHolding)},
-                    {'fundName': 'VDHG', "value": int(vdhgHolding)},
-                    {'fundName': 'Ethereum', "value": int(ethereumHolding)},
-                    {'fundName': 'Bitcoin', "value": int(bitcoinHolding)},
-                    {'fundName': 'Airbus', "value": int(airbusAUDTotal)},
-                    {'fundName': 'Vanguard', "value": int(vanguardHolding)},
-                    {'fundName': 'HBar', "value": int(hbarHolding)},]
-                } 
     holdingsDatabase = PortHoldings.objects.all().values()
     output = ""
     for x in holdingsDatabase:
         output += x['nameFund']        
-    template = loader.get_template('index.html')
-    #Create dictionary of all variables you want to pass to template
-    context = {'holdings': holdings,
-            'totalHoldings': totalHoldings,
-            'holdingsDatabase': holdingsDatabase,
-    }
 
+    #Get value of different holdings
+    VDHGAmt = PortHoldings.objects.get(nameFund="VDHG", institution="CommSec")
+    VDHGValue = float(VDHGAmt.numHoldings) * float(vdhgPrice.text.replace(',','').strip('$'))
+    VESGAmt = PortHoldings.objects.get(nameFund="VESG")
+    VESGValue = float(VESGAmt.numHoldings) * float(vesgPrice.text.replace(',','').strip('$'))
+    VanguardAmt = PortHoldings.objects.get(institution="Vanguard")
+    VanguardValue = float(VanguardAmt.numHoldings) * float(vanguardPrice[4].text.replace(',','').strip('$'))
+    BitAmt = PortHoldings.objects.get(nameFund="Bitcoin")
+    BitValue = float(BitAmt.numHoldings) * float(bitcoinPrice.text.replace(',','').strip('$'))
+    EthAmt = PortHoldings.objects.get(nameFund="Etherium")
+    EthValue = float(EthAmt.numHoldings) * float(ethPrice.text.replace(',','').strip('$'))
+    HbarAmt = PortHoldings.objects.get(nameFund="Hbar")
+    HbarValue = float(HbarAmt.numHoldings) * float(hbarPrice.text.replace(',','').strip('$'))
+    AirAmt = PortHoldings.objects.get(nameFund="Airbus")
+    AirValue = float(AirAmt.numHoldings) * airbusAUDTotal
+    totalValue = (AirValue + EthValue + BitValue + VanguardValue + VESGValue + VDHGValue + HbarValue)
 
-
-
+    holdings = {'funds':[{'fundName': VESGAmt.nameFund, "value": VESGValue},
+                    {'fundName': VDHGAmt.nameFund, "value": VDHGValue},
+                    {'fundName': EthAmt.nameFund, "value": EthValue},
+                    {'fundName': BitAmt.nameFund, "value": BitValue},
+                    {'fundName': AirAmt.nameFund, "value": AirValue},
+                    {'fundName': "Vanguard", "value": VanguardValue},
+                    {'fundName': HbarAmt.nameFund, "value": HbarValue},]
+                } 
     
-    return HttpResponse(template.render(context, request))
-    #Other way to do it
-    #return render(request, 'myfirst.html', context)
+    #Dictionary of variables created to be passed to template
+    context = {'holdings': holdings,
+            'totalValue': totalValue,
+            'holdingsDatabase': holdingsDatabase,
 
+            }
+    
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render(context, request)) #Other way to do it => return render(request, 'myfirst.html', context)
+    
 def add(request):
     template = loader.get_template('add.html')
     return HttpResponse(template.render({}, request))

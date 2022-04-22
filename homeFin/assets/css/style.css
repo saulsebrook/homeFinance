@@ -1,0 +1,53 @@
+.head1 {
+    font-size:40px;
+    color:#c0c3cb;
+    font-weight:bold;
+}
+.head2 {
+    font-size:17px;
+    margin-left:10px;
+    margin-bottom:15px;
+}
+body {
+    margin: 0 auto;
+    background-position:center;
+    background-size: contain;
+}
+.menu {  
+    position: sticky;
+    top: 0;
+    background-color: #c0c3cb;
+    padding:10px 0px 10px 0px;
+    color:white;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.menu a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.menu-log {
+    right: auto;
+    float: right;
+}
+table{
+    border-collapse: collapse;
+    width: 60%;
+
+} 
+th, td {
+border-bottom:1px solid black;
+text-align: left;
+padding: 8px;
+}
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 300px;
+}
