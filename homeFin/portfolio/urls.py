@@ -6,4 +6,8 @@ urlpatterns = [
     path('add/', views.add, name='add'),
     path('add/addrecord/', views.addrecord, name='addrecord'),
     path('delete/<int:id>', views.delete, name='delete'),
-]
+    path('pop/', views.pop, name='pop'),
+    path('pop/modify/<int:id>', views.modify, name='modify'),
+    path('pop/modify/modifyRecord/<int:id>', views.modifyRecord, name='modifyRecord'),
+    ]
+    

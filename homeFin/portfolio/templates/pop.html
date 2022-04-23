@@ -1,0 +1,14 @@
+<h1>Modify Portfolio</h1>
+
+
+<table border="1">
+    {% for x in portEntry %}
+    <tr>
+        <td><a href="modify/{{ x.id }}">{{ x.id }}</a></td>
+        <td>{{ x.nameFund }}</td>
+        <td>{{ x.numHoldings|floatformat:"0" }}</td>
+        <td><a href="delete/{{ x.id }}">delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<p><a href="add/">Add portfolio entry</a></p>

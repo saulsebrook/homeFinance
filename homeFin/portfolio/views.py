@@ -1,3 +1,4 @@
+from json import load
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -36,4 +37,31 @@ def addrecord(request):
 def delete(request, id):
     portEntry = PortHoldings.objects.get(id=id)
     portEntry.delete()
+    return HttpResponseRedirect(reverse('index'))
+
+def pop(request):
+    portEntry = PortHoldings.objects.all().values()
+    template = loader.get_template('pop.html')
+    context = {
+        'portEntry': portEntry
+        }
+    return HttpResponse(template.render(context, request))
+
+def modify(request, id):
+    portEntry = PortHoldings.objects.get(id=id)
+    template = loader.get_template('modify.html')
+    context = {
+        'portEntry': portEntry
+    }
+    return HttpResponse(template.render(context, request))
+
+def modifyRecord(request, id):
+    fund = request.POST['fund']
+    holdings = request.POST['holdings']
+    institution = request.POST['institution']
+    portfolio = PortHoldings.objects.get(id=id)
+    portfolio.fundName = fund
+    portfolio.numHoldings = holdings
+    portfolio.institution = institution
+    portfolio.save()
     return HttpResponseRedirect(reverse('index'))

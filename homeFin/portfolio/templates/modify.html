@@ -1,0 +1,17 @@
+
+{% load humanize %}
+{% load static %}
+<form action="modifyRecord/{{ portEntry.id }}" method="post">
+    {% csrf_token %}
+    Fund Name:  <br>
+    <input name="fund" type="text" autocomplete="off" value="{{ portEntry.nameFund }}">
+    <br><br>
+    Number of holdings:<br>
+    <input name="holdings" value="{{ portEntry.numHoldings|floatformat:'0' }}">
+    <br><br>
+    Institution:<br>
+    <input name="institution" value="{{ portEntry.institution }}">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
