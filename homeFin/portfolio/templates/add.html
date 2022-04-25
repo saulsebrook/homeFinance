@@ -1,14 +1,32 @@
-<h1>Add fund to database</h1>
+<!DOCTYPE html>
+ <html>
+ <head>
+{% load humanize %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<div class="topnav">
+    <a class="active" href="{% url 'index' %}">Home</a>
+    <a href="{% url 'pop' %}">Modify entry</a>
+    
+</div> 
+
+<div class="form">
+<br><br><h2>UPDATE ENTRY</h2><br>
             <form action="addrecord/" method="post">
                 {% csrf_token %}
                 Name of fund:<br>
-                <input name="nameFund">
+                <input type="text" name="nameFund">
                 <br><br>
                 Number of holdings:<br>
-                <input name="numHoldings">
+                <input type="text" name="numHoldings">
                 <br><br>
                 Instution held at:<br>
-                <input name="institution">
+                <input type="text" name="institution">
                 <br><br>
                 <input type="submit" value="Submit">
             </form>
+        </div>

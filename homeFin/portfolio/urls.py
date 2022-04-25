@@ -7,7 +7,7 @@ urlpatterns = [
     path('add/addrecord/', views.addrecord, name='addrecord'),
     path('delete/<int:id>', views.delete, name='delete'),
     path('pop/', views.pop, name='pop'),
-    path('pop/modify/<int:id>', views.modify, name='modify'),
-    path('pop/modify/modifyRecord/<int:id>', views.modifyRecord, name='modifyRecord'),
+    path('modify/<int:id>', views.modify, name='modify'),
+    path('modify/modifyRecord/<int:id>', views.modifyRecord, name='modifyRecord'),
     ]
     
