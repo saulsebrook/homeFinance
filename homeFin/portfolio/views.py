@@ -5,6 +5,7 @@ from django.template import loader
 from .models import PortHoldings
 from django.urls import reverse
 from .scrape import scrapeData
+from .web_scrape import WebScrape
 
 def index(request):
 
