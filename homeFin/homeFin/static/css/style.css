@@ -83,20 +83,15 @@ body {
     font-size: 2.5rem;
   }
   
-  .dropdown-container{
+   .dropdown-container{
     position: relative;
   }
+ 
   .dropdown-menu {
     position: absolute;
     top: 100%; /* Bottom of button */
     right: 0;
-    margin-left: -100px; /* More to the left */
-  }
-  .dropdown-menu {
-    position: absolute;
-    top: 100%; /* Bottom of button */
-    right: 0;
-    margin-left: -100px; /* More to the left */
     width: max-content;
-  }
+    float: right;
+  } 
   

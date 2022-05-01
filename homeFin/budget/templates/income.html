@@ -20,6 +20,29 @@
             {% endfor %}
             </tbody>
         </table>
+    <div class="form-group" >
+    <form action="{% url 'change_salary' %}" method="POST">
+    {% csrf_token %}
+        <fieldset class="form-group" width="60%">
+            <legend class="border-bottom mb-4">Change Income</legend>
+            <label for="exampleFormControlSelect1">Change Income</label>
+            <div class="form-group">
+                <select class="form-control" id="exampleFormControlSelect1" name="person">
+                    {% for x, i in income.items %}
+                    <option>{{ x }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <label for="portfolioUpdate">New Wage</label>
+            <input class="form-control" name="newWage" type="text" >
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+
         <div class="border-top pt-3">
             <small class="text-muted">
                 Already Have an Account?<a class=" ml-2" href="#">Sign In</a>

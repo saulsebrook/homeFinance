@@ -22,6 +22,7 @@ urlpatterns = [
     path('portfolio/', include('portfolio.urls')),
     path('budget/', budget_views.budget, name='budget'),
     path('income/', budget_views.income, name='income'),
+    path('income/change_salary/', budget_views.change_salary, name='change_salary'),
     path('presents/', budget_views.presents, name='presents'),
     path('admin/', admin.site.urls),
 

@@ -32,6 +32,27 @@ def get_presents_allocation():
         presents[y[i].value] = x[i].value
     
     return presents
-i = get_allocations()
-for x in i:
-    print(x, i[x])
+
+def amend_wage(person, wage):
+    sheet = budget['Budget2022']
+    for rownum in range(8, 10):
+        income = sheet.cell(row=rownum, column=9).value 
+        if income == person:
+            sheet.cell(row=rownum, column=10).value = wage
+
+    budget.save('/Users/saulsebrook/Documents/Aulsebrook Budget.xlsx')
+
+i = get_income()
+print(list(i.keys())[0])
+
+
+""" 
+
+sheet = budget['Budget2022']
+for rownum in range(8, 10):
+  income = sheet.cell(row=rownum, column=9).value 
+  if income in i:
+    sheet.cell(row=rownum, column=10).value = 2350
+
+
+budget.save('/Users/saulsebrook/Documents/Aulsebrook Budget.xlsx') """
