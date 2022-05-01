@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content_section">
+        <table class="table table-hover">
+            <p class="h4 p-3 text-center">Allocations</p>
+            <thead>
+            <tr>
+                <th scope="col">Allocation</th>
+                <th scope="col">Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for x,i in allocation.items %}
+            <tr>
+                <td>{{ x }}</td>
+                <td>${{ i|floatformat:2 }}</td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have an Account?<a class=" ml-2" href="#">Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
+
+
+

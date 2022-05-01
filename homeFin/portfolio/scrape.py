@@ -1,5 +1,6 @@
 from webbrowser import get
 import re
+import requests
 from .models import PortHoldings
 from .web_scrape import WebScrape
 
@@ -7,7 +8,6 @@ headers = {'User-agent': 'your bot 0.1'}
 
 def get_airbus_value():
     #Get beautiful soup objects
-
     airbus = WebScrape('https://markets.businessinsider.com/stocks/airbus-stock?op=1', {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET',
@@ -22,7 +22,6 @@ def get_airbus_value():
     euro = eur_audConverter.scraper.find('span', class_ ='ccOutputRslt').text
     rates = re.findall(r'\d+\.\d+', euro)
     airbusAUDTotal = float(rates[0]) * float(airbusHoldings)
-    #airbusAUDTotal = float(totalPrice)
     AirAmt = PortHoldings.objects.get(nameFund="Airbus")
     AirValue = float(AirAmt.numHoldings) * float(airbusAUDTotal)
 
@@ -106,4 +105,5 @@ def scrapeData():
     return holdings, totalValue, holdingsDatabase
 
 if __name__ == '__main__':
-    scrapeData()
+    response = requests.get('https://www.independentreserve.com/api2/market/best?primary=Eth&secondary=Aud', headers)
+    print(response.bestOffer)

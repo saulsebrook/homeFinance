@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from portfolio import views
+from budget import views as budget_views
 
 urlpatterns = [
     path('portfolio/', include('portfolio.urls')),
+    path('budget/', budget_views.budget, name='budget'),
+    path('income/', budget_views.income, name='income'),
+    path('presents/', budget_views.presents, name='presents'),
     path('admin/', admin.site.urls),
 
 ]

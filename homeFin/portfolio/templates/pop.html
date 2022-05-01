@@ -1,39 +1,36 @@
-<!DOCTYPE html>
- <html>
- <head>
-{% load humanize %}
-{% load static %}
-
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<div class="topnav">
-    <a class="active" href="{% url 'index' %}">Home</a>
-    <a href='../add/'>Add portfolio entry</a>
-    
-</div> 
-<div class="middle">
-<br><br><h2>UPDATE ENTRY</h2><br>
-<table class="center">
-    <tr>
-        <td><b>Fund ID</b></td>
-    
-        <td><b>Fund Name</b></td>
-   
-        <td><b>Number of Holdings</b></td>
-      
-        <td><b>Delete Entry</b></td>
-        </tr>
-    {% for x in portEntry %}
-    <tr>
-        <td><a href="../modify/{{ x.id }}">{{ x.id }}</a></td>
-        <td>{{ x.nameFund }}</td>
-        <td>{{ x.numHoldings|floatformat:"-2" }}</td>
-        <td><a href="../delete/{{ x.id }}">Del</a></td>
-    </tr>
-    {% endfor %}
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content_section">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Fund ID</th>
+                <th scope="col">Fund Name</th>
+                <th scope="col">Number of Holdings</th>
+                <th scope="col">Institution</th>
+                <th scope="col">Delete Entry</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for x in portEntry %}
+            <tr>
+                <td><a href="../modify/{{ x.id }}">{{ x.id }}</td>
+                <td>{{ x.nameFund }}</td>
+                <td>{{ x.numHoldings|floatformat:"-2" }}</td>
+                <td>{{ x.institution }}</td>
+                <td><a href="../delete/{{ x.id }}">Del</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have an Account? <a class=" ml-2" href="#">Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
 
 
-</div>
-</div>
+

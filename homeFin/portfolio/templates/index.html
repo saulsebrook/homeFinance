@@ -1,122 +1,28 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    
-    {% load humanize %}
-    {% load static %}
-    
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <table class="table table-hover">
+        <p class="h4 p-3 text-center">Portfolio Holdings</p>
+        <thead>
+        <tr>
+            <th scope="col">Fund Name</th>
+            <th scope="col">Current Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in holdings.funds %}
+        <tr>
+            <td>{{ i.fundName }}</td>
+            <td>${{ i.value|floatformat:"0" }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <thead>
+            <tr>
+                <th scope="col">Total</th>
+                <th scope="col">${{ totalValue|floatformat:"0" }}</th>
+            </tr>
+            </thead>
+    </table>
+{% endblock content %}
 
-    <title>Page Layout</title>
- 
-</head>
- 
-<body>
-     
-
-    <header>
-        <div class="head1">Home Finance</div>
-        <div class="head2"></div>
-    </header>
-     
-
-    <div class="menu">
-        <a href='add/'>Add portfolio entry</a>
-        <a href="#news"></a>
-        <a href="#notification"></a>
-        <div class="menu-log">
-            <a href="#login">LOGIN</a>
-        </div>
-    </div>
-     
-
-    <div class = "body_sec">
-        <section id="Content">
-
-           
-            
-            <br>
-
-            <table class="center">
-                <tr>
-                    <th>Fund Name</th>
-                    <th>Current Price</th>
-                </tr>
-                {% for i in holdings.funds %}
-                <tr>
-                 
-                    <td>{{ i.fundName }} </td>
-                    <td>${{ i.value|floatformat:"0" }}</td>
-                    
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td><b>Total</b></td>
-                    <td><b>${{ totalValue|floatformat:"0" }}</b></td>
-                </tr>
-                
-            </table>
-            <br>
-        
-  
-        </section>
-    </div>
-     
-
-    <footer></footer>
-</body>
-</html>  
- -->
-
- <!DOCTYPE html>
- <html>
- <head>
-    {% load humanize %}
-    {% load static %}
-    
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <style>
-     .parallax{
-         background-image: url("{% static 'media/IMG_2317.JPG' %}");
-        }
-    
- </style>
- </head>
- <body>
-<div class="topnav">
-    <a class="active" href="{% url 'index' %}">Home</a>
-    <a href='add/'>Add portfolio entry</a>
-    <a href='pop/'>Update Entry</a>
-</div> 
- 
- <div class="parallax"></div>
- 
- <div style="height:1000px;background-color:rgb(255, 255, 255);color: #777;text-align: center; font-size:15px">
- <!-- Scroll Up and Down this page to see the parallax scrolling effect.
- This div is just here to enable scrolling.
- Tip: Try to remove the background-attachment property to remove the scrolling effect. -->
- <br><br><h2>PORTFOLIO</h2><br>
- <table class="center">
-    <tr>
-        <th>Fund Name</th>
-        <th>Current Price</th>
-    </tr>
-    {% for i in holdings.funds %}
-    <tr>
-     
-        <td>{{ i.fundName }} </td>
-        <td>${{ i.value|floatformat:"0" }}</td>
-        
-    </tr>
-    {% endfor %}
-    <tr>
-        <td><b>Total</b></td>
-        <td><b>${{ totalValue|floatformat:"0" }}</b></td>
-    </tr> 
-
-</div>
- 
- </body>
- </html>

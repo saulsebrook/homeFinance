@@ -1,17 +1,29 @@
 
-{% load humanize %}
-{% load static %}
-<form action="modifyRecord/{{ portEntry.id }}" method="post">
-    {% csrf_token %}
-    Fund Name:  <br>
-    <input name="fund" type="text" autocomplete="off" value="{{ portEntry.nameFund }}">
-    <br><br>
-    Number of holdings:<br>
-    <input name="holdings" value="{{ portEntry.numHoldings|floatformat:'0' }}">
-    <br><br>
-    Institution:<br>
-    <input name="institution" value="{{ portEntry.institution }}">
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content_section">
+        <form action="modifyRecord/{{ portEntry.id }}" method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Edit Entry</legend>
+                    <label for="portfolioUpdate">Name of Fund</label>
+                    <input class="form-control" name="fund" autocomplete="off" type="text" value="{{ portEntry.nameFund }}">
+                    <label for="portfolioUpdate">Number of Holdings</label>
+                    <input class="form-control" name="holdings" value="{{ portEntry.numHoldings|floatformat:'0' }}">
+                    <label for="portfolioUpdate">Institution</label>
+                    <input class="form-control" name="institution" value="{{ portEntry.institution }}">
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Submit</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have an Account? <a class=" ml-2" href="#">Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
+
 

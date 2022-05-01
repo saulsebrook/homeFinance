@@ -1,134 +1,102 @@
-.head1 {
-    font-size:40px;
-    color:#c0c3cb;
-    font-weight:bold;
-}
-.head2 {
-    font-size:17px;
-    margin-left:10px;
-    margin-bottom:15px;
-}
-body, p {
-    margin: 0 auto;
-    background-position:center;
-    background-size: contain;
-    color: #777;
-    font-family: 'Lato';
-    font-size: 15px;
-}
-.menu {  
-    position: sticky;
-    top: 0;
-    background-color: #c0c3cb;
-    padding:10px 0px 10px 0px;
-    color:white;
-    margin: 0 auto;
-    overflow: hidden;
-}
-.menu{
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 20px;
-}
-.topnav{
-    background-color: white;
-    overflow: hidden;
-}
-.topnav a {
-    float: left;
-    color:#777;
-    text-align: center;
-    padding: 18px 20px;
-    text-decoration: none;
-    font-size: 17px;
-}
-.topnav a:hover{
-    background-color: #777;
-    color: white;
-
-}
-.menu-log {
-    right: auto;
-    float: right;
-}
-table{
-    border-collapse: collapse;
-    width: 60%;
-
-} 
-th, td {
-border-bottom:1px solid black;
-text-align: left;
-padding: 8px;
-}
-
-h3, h2{
-    font-weight: 400;
-}
-.center, .main-body{
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-top: 300px;
-    font-family: 'Lato';
-}
-
-.parallax {
-    /* The image used */
-
-    opacity: 0.75;
-    text-align: center;
-  
-    /* Set a specific height */
-    min-height: 800px; 
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
   }
-.middle{
-    background-color:rgb(255, 255, 255);
-    color: #777;
-    text-align: center; 
-    font-size:15px
-    
-}
-input[type=text] {
-    padding: 10px;
-    margin: 10px 0;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    border: 0.5em; 
-    border-bottom:1px solid #eee;
-    width: 40%;
-    text-align: center;
-    font-family: 'Lato';
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
   }
-input[type=submit]{
-    padding:10px;
-  border:none;
-  background-color:#8893cf;
-  color:#fff;
-  font-weight:600;
-  border-radius:5px;
-  width:40%;
-  margin: 50px 0;
-}
-.form{
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    padding: 10px;
-    font-family: 'Lato';
-
-}
-
-
-
+  
+  ul {
+    margin: 0;
+  }
+  
+  .bg-steel {
+    background-color: #5f788a;
+  }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  
+  .content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    color: #444444;
+  }
+  
+  a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+  .article-content {
+    white-space: pre-line;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+  }
+  
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+  .article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .account-heading {
+    font-size: 2.5rem;
+  }
+  
+  .dropdown-container{
+    position: relative;
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Bottom of button */
+    right: 0;
+    margin-left: -100px; /* More to the left */
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Bottom of button */
+    right: 0;
+    margin-left: -100px; /* More to the left */
+    width: max-content;
+  }
+  
