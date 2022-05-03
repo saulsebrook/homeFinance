@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 from webbrowser import get
 import re
 import requests
@@ -79,14 +80,24 @@ def get_hbar_value():
     
 def scrapeData():    
 
-    AirAmt, AirValue = get_airbus_value()
-    EthAmt, EthValue = get_etherium_value()
-    VESGAmt, VESGValue = get_VESG_value()
-    VDHGAmt, VDHGValue = get_VDHG_value()
-    BitAmt, BitValue = get_bitcoin_value()
-    VanguardAmt, VanguardValue = get_vanguard_value()
-    HbarAmt, HbarValue = get_hbar_value()
-    
+    # Using ThreadPoolExecutor so all the webscraping functions can run at once, drastically increasing render time
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        f1 = executor.submit(get_airbus_value)
+        f2 = executor.submit(get_etherium_value)
+        f3 = executor.submit(get_VESG_value)
+        f4 = executor.submit(get_VDHG_value)
+        f5 = executor.submit(get_bitcoin_value)
+        f6 = executor.submit(get_vanguard_value)
+        f7 = executor.submit(get_hbar_value)
+
+    AirAmt, AirValue = f1.result()
+    EthAmt, EthValue = f2.result()
+    VESGAmt, VESGValue = f3.result()
+    VDHGAmt, VDHGValue = f4.result()
+    BitAmt, BitValue = f5.result()
+    VanguardAmt, VanguardValue = f6.result()
+    HbarAmt, HbarValue = f7.result()
+
     holdingsDatabase = PortHoldings.objects.all().values()
     output = ""
     for x in holdingsDatabase:
